@@ -3,17 +3,14 @@
   "category": "equipment",
   "ingredients": [
     {
-      "item" : "minecraft:stick"
+      "tag" : "minecraft:foot_armor"
     },
     {
       "item": "toffys_hooks:hook"
-    },
-    {
-      "item": "minecraft:netherite_scrap"
     }
   ],
   "result": {
     "count": 1,
-    "id": "toffys_hooks:hook_axe"
+    "id": "toffys_hooks:climbing_hook"
   }
 }

@@ -1,18 +1,19 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "equipment",
-  "key": {
-    "A": {
-      "item": "minecraft:iron_ingot"
+  "ingredients": [
+    {
+      "item" : "minecraft:iron_ingot"
     },
-    "B": {
-      "item": "minecraft:heavy_core"
+    {
+      "item" : "minecraft:iron_ingot"
+    },
+    {
+      "item" : "minecraft:iron_ingot"
+    },
+    {
+      "tag": "toffys_hooks:hook_core"
     }
-  },
-  "pattern": [
-    " A ",
-    "ABA",
-    "   "
   ],
   "result": {
     "count": 1,

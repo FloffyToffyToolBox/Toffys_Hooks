@@ -2,23 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "D": {
-      "item": "minecraft:leather"
-    },
     "A": {
       "item": "toffys_hooks:hook"
     },
     "B": {
-      "item": "minecraft:string"
+      "item": "minecraft:chain"
     },
     "C": {
       "item": "minecraft:stick"
     }
   },
   "pattern": [
-    " A ",
-    "DBD",
-    " C "
+    " A",
+    "CB"
   ],
   "result": {
     "count": 1,

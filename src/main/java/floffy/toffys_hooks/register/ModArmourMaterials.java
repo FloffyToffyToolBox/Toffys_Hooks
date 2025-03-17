@@ -66,7 +66,7 @@ public class ModArmourMaterials {
             return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
         });
         CLIMBING_HOOK = register("climbing_hook", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
-            map.put(Type.BOOTS, 3);
+            map.put(Type.BOOTS, 2);
             map.put(Type.LEGGINGS, 6);
             map.put(Type.CHESTPLATE, 8);
             map.put(Type.HELMET, 3);

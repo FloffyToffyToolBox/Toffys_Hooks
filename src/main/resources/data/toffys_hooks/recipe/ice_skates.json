@@ -1,18 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "equipment",
-  "key": {
-    "A": {
+  "ingredients": [
+    {
       "tag" : "minecraft:foot_armor"
     },
-    "B": {
+    {
       "item": "toffys_hooks:hook"
+    },
+    {
+      "item": "minecraft:netherite_scrap"
     }
-  },
-  "pattern": [
-    "   ",
-    " A ",
-    "B B"
   ],
   "result": {
     "count": 1,

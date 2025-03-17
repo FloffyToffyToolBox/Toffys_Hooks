@@ -3,6 +3,7 @@
   "item.toffys_hooks.hook" : "Hook",
   "item.toffys_hooks.hook_axe" : "Hook Axe",
   "item.toffys_hooks.ice_skates" : "Ice Skates",
+  "item.toffys_hooks.climbing_hook" : "Climbing Claws",
 
   "advancements.story.you_will_be_hooked.title" : "You'll Be Hooked!",
   "advancements.story.you_will_be_hooked.description" : "Craft a Hook with 3 Iron and 1 Heavy Core",
@@ -13,6 +14,9 @@
   "advancements.story.skating_on_thin_ice.title" : "You're Skating On Thin Ice!",
   "advancements.story.skating_on_thin_ice.description" : "Craft a pair of Ice Skates with 2 hooks and any pair of boots",
 
-  "advancements.story.fifteen_in_one.title" : "15 In 1",
-  "advancements.story.fifteen_in_one.description" : "Craft a Hook Axe with 1 Hook and 1 Stick"
+  "advancements.story.fifteen_in_one.title" : "5 In 1",
+  "advancements.story.fifteen_in_one.description" : "Craft a Hook Axe with 1 Hook and 1 Stick",
+
+  "advancements.story.spider_man.title" : "Spider Man! Spider Man!",
+  "advancements.story.spider_man.description" : "Craft a pair of Climbing Shoes with"
 }

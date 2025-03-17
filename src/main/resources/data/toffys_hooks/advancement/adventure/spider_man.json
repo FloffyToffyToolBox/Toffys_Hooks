@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "criteria": {
+    "spider_man": {
+      "conditions": {
+        "items": [
+          {
+            "items": "toffys_hooks:climbing_hook"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.spider_man.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "toffys_hooks:climbing_hook"
+    },
+    "title": {
+      "translate": "advancements.story.spider_man.title"
+    }
+  },
+  "requirements": [
+    [
+      "spider_man"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
