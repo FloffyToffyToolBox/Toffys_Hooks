@@ -1,0 +1,6 @@
+{
+  "parent" : "minecraft:item/handheld",
+  "textures" : {
+    "layer0" : "toffys_hooks:item/climbing_hook"
+  }
+}

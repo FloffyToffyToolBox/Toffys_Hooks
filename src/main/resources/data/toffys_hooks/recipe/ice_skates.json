@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "tag" : "minecraft:foot_armor"
+    },
+    "B": {
+      "item": "toffys_hooks:hook"
+    }
+  },
+  "pattern": [
+    "   ",
+    " A ",
+    "B B"
+  ],
+  "result": {
+    "count": 1,
+    "id": "toffys_hooks:ice_skates"
+  }
+}

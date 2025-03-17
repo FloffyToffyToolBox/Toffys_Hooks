@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "criteria": {
+    "quite_the_hooker": {
+      "conditions": {
+        "items": [
+          {
+            "items": "toffys_hooks:grappling_hook"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.quite_the_hooker.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "toffys_hooks:grappling_hook"
+    },
+    "title": {
+      "translate": "advancements.story.quite_the_hooker.title"
+    }
+  },
+  "requirements": [
+    [
+      "quite_the_hooker"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

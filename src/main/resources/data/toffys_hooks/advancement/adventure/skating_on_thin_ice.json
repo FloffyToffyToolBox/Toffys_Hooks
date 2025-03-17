@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "criteria": {
+    "skating_on_thin_ice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "toffys_hooks:ice_skates"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.skating_on_thin_ice.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "toffys_hooks:ice_skates"
+    },
+    "title": {
+      "translate": "advancements.story.skating_on_thin_ice.title"
+    }
+  },
+  "requirements": [
+    [
+      "skating_on_thin_ice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

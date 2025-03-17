@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "criteria": {
+    "fifteen_in_one": {
+      "conditions": {
+        "items": [
+          {
+            "items": "toffys_hooks:hook_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.fifteen_in_one.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "toffys_hooks:hook_axe"
+    },
+    "title": {
+      "translate": "advancements.story.fifteen_in_one.title"
+    }
+  },
+  "requirements": [
+    [
+      "fifteen_in_one"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

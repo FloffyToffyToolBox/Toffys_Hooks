@@ -1,0 +1,7 @@
+{
+  "variants": {
+      "": {
+      "model": "toffys_hooks:block/hook_point"
+    }
+  }
+}

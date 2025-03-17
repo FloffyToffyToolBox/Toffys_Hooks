@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "toffys_hooks",
+	"version": "${version}",
+	"name": "[Toffy's] HOOKS",
+	"description": "Adds Grappling Hooks and Ice Skates",
+	"authors": [
+		"FloffyToffy https://www.youtube.com/@totallytoffy"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/toffys_hooks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"floffy.toffys_hooks.ToffysHooks"
+		],
+		"fabric-datagen": [
+			"floffy.toffys_hooks.ToffysHooksDataGenerator"
+		],
+		"client": [
+			"floffy.toffys_hooks.ToffysHooksClient"
+		]
+	},
+	"mixins": [
+		"toffys_hooks.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

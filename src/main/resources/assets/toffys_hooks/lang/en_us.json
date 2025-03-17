@@ -1,0 +1,18 @@
+{
+  "item.toffys_hooks.grappling_hook" : "Grappling Hook",
+  "item.toffys_hooks.hook" : "Hook",
+  "item.toffys_hooks.hook_axe" : "Hook Axe",
+  "item.toffys_hooks.ice_skates" : "Ice Skates",
+
+  "advancements.story.you_will_be_hooked.title" : "You'll Be Hooked!",
+  "advancements.story.you_will_be_hooked.description" : "Craft a Hook with 3 Iron and 1 Heavy Core",
+
+  "advancements.story.quite_the_hooker.title" : "Quite The Hooker!",
+  "advancements.story.quite_the_hooker.description" : "Craft a Grappling Hook with 1 Hook, 2 Leather, 1 String and a Hook",
+
+  "advancements.story.skating_on_thin_ice.title" : "You're Skating On Thin Ice!",
+  "advancements.story.skating_on_thin_ice.description" : "Craft a pair of Ice Skates with 2 hooks and any pair of boots",
+
+  "advancements.story.fifteen_in_one.title" : "15 In 1",
+  "advancements.story.fifteen_in_one.description" : "Craft a Hook Axe with 1 Hook and 1 Stick"
+}
