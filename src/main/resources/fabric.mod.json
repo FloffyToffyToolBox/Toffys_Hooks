@@ -18,9 +18,6 @@
 		"main": [
 			"floffy.toffys_hooks.ToffysHooks"
 		],
-		"fabric-datagen": [
-			"floffy.toffys_hooks.ToffysHooksDataGenerator"
-		],
 		"client": [
 			"floffy.toffys_hooks.ToffysHooksClient"
 		]
