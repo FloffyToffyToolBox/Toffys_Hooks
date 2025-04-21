@@ -11,10 +11,10 @@ import java.util.function.Supplier;
 
 import floffy.toffys_hooks.ToffysHooks;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorItem.Type;
-import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.item.equipment.ArmorMaterial;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -25,15 +25,15 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
 public class ModArmourMaterials {
-    public static final RegistryEntry<ArmorMaterial> ICE_SKATES;
-    public static final RegistryEntry<ArmorMaterial> CLIMBING_HOOK;
+    public static final ArmorMaterial ICE_SKATES;
+    public static final ArmorMaterial CLIMBING_HOOK;
     public ModArmourMaterials() {
     }
 
     public static void register() {
         ToffysHooks.LOGGER.debug("Registering armour for " + ToffysHooks.MOD_ID);
     }
-    public static RegistryEntry<ArmorMaterial> getDefault(Registry<ArmorMaterial> registry) {
+    public static ArmorMaterial getDefault(Registry<ArmorMaterial> registry) {
         return ICE_SKATES;
     }
 
@@ -57,20 +57,20 @@ public class ModArmourMaterials {
 
     static {
         ICE_SKATES = register("ice_skates", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
-            map.put(Type.BOOTS, 3);
-            map.put(Type.LEGGINGS, 6);
-            map.put(Type.CHESTPLATE, 8);
-            map.put(Type.HELMET, 3);
-            map.put(Type.BODY, 11);
+            map.put(EquipmentType.BOOTS, 3);
+            map.put(EquipmentType.LEGGINGS, 6);
+            map.put(EquipmentType.CHESTPLATE, 8);
+            map.put(EquipmentType.HELMET, 3);
+            map.put(EquipmentType.BODY, 11);
         }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
             return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
         });
-        CLIMBING_HOOK = register("climbing_hook", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
-            map.put(Type.BOOTS, 2);
-            map.put(Type.LEGGINGS, 6);
-            map.put(Type.CHESTPLATE, 8);
-            map.put(Type.HELMET, 3);
-            map.put(Type.BODY, 11);
+        CLIMBING_HOOK = register("climbing_hook", (EnumMap)Util.make(new EnumMap(ArmorItem.EquipmentType.class), (map) -> {
+            map.put(EquipmentType.BOOTS, 2);
+            map.put(EquipmentType.LEGGINGS, 6);
+            map.put(EquipmentType.CHESTPLATE, 8);
+            map.put(EquipmentType.HELMET, 3);
+            map.put(EquipmentType.BODY, 11);
         }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
             return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
         });
