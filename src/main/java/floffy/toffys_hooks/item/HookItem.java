@@ -14,8 +14,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
@@ -26,7 +26,7 @@ public class HookItem extends Item {
 
 
     @Override
-    public ActionResult use(World world, PlayerEntity player, Hand hand) {
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack itemStack = player.getStackInHand(hand);
         HookEntity hookEntity = ((PlayerWithHookData)player).getHook();
         if (hookEntity != null) {
@@ -37,7 +37,7 @@ public class HookItem extends Item {
             }
             this.fire(world, player);
         }
-        return ActionResult.SUCCESS;
+        return TypedActionResult.success(itemStack, world.isClient);
     }
 
     private void fire(World world, PlayerEntity player) {

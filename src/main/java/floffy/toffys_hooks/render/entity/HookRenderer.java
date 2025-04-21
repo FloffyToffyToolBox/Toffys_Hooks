@@ -15,7 +15,6 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.*;
-import net.minecraft.client.render.entity.state.EntityRenderState;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.texture.SpriteAtlasTexture;
@@ -41,11 +40,6 @@ public class HookRenderer
     public HookRenderer(EntityRendererFactory.Context context) {
         super(context);
         this.itemRenderer = context.getItemRenderer();
-    }
-
-    @Override
-    public EntityRenderState createRenderState() {
-        return null;
     }
 
     @Override
@@ -92,7 +86,7 @@ public class HookRenderer
         HookRenderer.vertex(vertexConsumer, entry, v, 0.0f, w, 0.4999f, aa, i );
         HookRenderer.vertex(vertexConsumer, entry, v, x, w, 0.4999f, ab, i );
         matrixStack.pop();
-        super.render(EntityRenderStates, matrixStack, vertexConsumerProvider, i);
+        super.render(lashingPotatoHookEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
     private static void vertex(VertexConsumer vertexConsumer, MatrixStack.Entry matrix, float x, float y, float z, float u, float v,int i) {
