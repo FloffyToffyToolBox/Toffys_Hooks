@@ -37,27 +37,22 @@ public class HookEntity extends ProjectileEntity {
         super(entityType, level);
         this.ignoreCameraFrustum = true;
     }
-    public HookEntity(World level, PlayerEntity player) {
+    public HookEntity(PlayerEntity player,World level) {
         this(ModEntities.HOOK_ENTITY, level);
         this.setOwner(player);
         this.setPosition(player.getX(), player.getEyeY(), player.getZ());
-        this.setVelocity(player.getRotationVec(1.0F).multiply(5.0));
-    }
-    @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        builder.add(IN_BLOCK, false);
-        builder.add(LENGTH, 0.0F);
+        this.setVelocity(player.getRotationVec(1.0F).multiply(2.5));
     }
 
     @Override
     public boolean shouldRender(double distance) {
         return true;
     }
-
     @Override
-    public void updateTrackedPositionAndAngles(double x, double y, double z, float yaw, float pitch, int interpolationSteps) {
+    protected void initDataTracker() {
+        this.getDataTracker().startTracking(IN_BLOCK, false);
+        this.getDataTracker().startTracking(LENGTH, 0.0F);
     }
-
     @Override
     public void tick() {
         super.tick();
@@ -132,8 +127,6 @@ public class HookEntity extends ProjectileEntity {
     protected Entity.MoveEffect getMoveEffect() {
         return Entity.MoveEffect.NONE;
     }
-
-
     @Override
     public void remove(Entity.RemovalReason reason) {
         this.setHookForPlayer(null);
@@ -168,9 +161,9 @@ public class HookEntity extends ProjectileEntity {
     }
 
     @Override
-    public Packet<ClientPlayPacketListener> createSpawnPacket(EntityTrackerEntry entityTrackerEntry) {
+    public Packet<ClientPlayPacketListener> createSpawnPacket() {
         Entity entity = this.getOwner();
-        return new EntitySpawnS2CPacket(this, entityTrackerEntry , entity == null ? this.getId() : entity.getId());
+        return new EntitySpawnS2CPacket(this, entity == null ? this.getId() : entity.getId());
     }
     @Override
     public void onSpawnPacket(EntitySpawnS2CPacket packet) {

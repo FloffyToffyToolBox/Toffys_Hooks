@@ -33,7 +33,9 @@ public class HookItem extends Item {
             HookItem.discard(world, player, hookEntity);
         } else {
             if (!world.isClient) {
-                itemStack.damage(1, player, LivingEntity.getSlotForHand(hand));
+                itemStack.damage(1, player, (p) -> {
+                p.sendToolBreakStatus(hand);
+            });
             }
             this.fire(world, player);
         }
@@ -42,7 +44,7 @@ public class HookItem extends Item {
 
     private void fire(World world, PlayerEntity player) {
         if (!world.isClient) {
-            world.spawnEntity(new HookEntity(world, player));
+            world.spawnEntity(new HookEntity(player,world));
         }
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));

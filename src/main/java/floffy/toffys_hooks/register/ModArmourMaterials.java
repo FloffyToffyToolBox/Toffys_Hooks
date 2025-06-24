@@ -24,55 +24,71 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 
-public class ModArmourMaterials {
-    public static final RegistryEntry<ArmorMaterial> ICE_SKATES;
-    public static final RegistryEntry<ArmorMaterial> CLIMBING_HOOK;
-    public ModArmourMaterials() {
+public enum ModArmourMaterials implements ArmorMaterial{
+    ICE_SKATES("ice_skates", 10,  new int[]{3,6,8,3}, 10,
+            SoundEvents.ITEM_ARMOR_EQUIP_GOLD,0f,0f, () -> Ingredient.ofItems(Items.NETHERITE_SCRAP)),
+    CLIMBING_HOOK("climbing_hook", 10,  new int[]{2,6,8,3}, 10,
+        SoundEvents.ITEM_ARMOR_EQUIP_GOLD,0f,0f, () -> Ingredient.ofItems(Items.NETHERITE_SCRAP));
+
+    private final String name;
+    private final int durabilityMultiplier;
+    private final int[] protectionAmounts;
+    private final int enchantability;
+    private final SoundEvent equipSound;
+    private final float toughness;
+    private final float knockbackResistance;
+    private final Supplier<Ingredient> repairIngredient;
+
+    private static final int[] BASE_DURABILITY = { 11, 16, 15, 13 };
+
+    ModArmourMaterials(String name, int durabilityMultiplier, int[] protectionAmounts, int enchantability, SoundEvent equipSound,
+                      float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+        this.name = name;
+        this.durabilityMultiplier = durabilityMultiplier;
+        this.protectionAmounts = protectionAmounts;
+        this.enchantability = enchantability;
+        this.equipSound = equipSound;
+        this.toughness = toughness;
+        this.knockbackResistance = knockbackResistance;
+        this.repairIngredient = repairIngredient;
+    }
+    @Override
+    public int getDurability(ArmorItem.Type type) {
+        return BASE_DURABILITY[type.ordinal()] * this.durabilityMultiplier;
     }
 
-    public static void register() {
-        ToffysHooks.LOGGER.debug("Registering armour for " + ToffysHooks.MOD_ID);
-    }
-    public static RegistryEntry<ArmorMaterial> getDefault(Registry<ArmorMaterial> registry) {
-        return ICE_SKATES;
+    @Override
+    public int getProtection(ArmorItem.Type type) {
+        return protectionAmounts[type.ordinal()];
     }
 
-    private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
-        List<ArmorMaterial.Layer> list = List.of(new ArmorMaterial.Layer(Identifier.ofVanilla(id)));
-        return register(id, defense, enchantability, equipSound, toughness, knockbackResistance, repairIngredient, list);
+    @Override
+    public int getEnchantability() {
+        return this.enchantability;
     }
 
-    private static RegistryEntry<ArmorMaterial> register(String id, EnumMap<ArmorItem.Type, Integer> defense, int enchantability, RegistryEntry<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient, List<ArmorMaterial.Layer> layers) {
-        EnumMap<ArmorItem.Type, Integer> enumMap = new EnumMap(ArmorItem.Type.class);
-        ArmorItem.Type[] var9 = Type.values();
-        int var10 = var9.length;
-
-        for(int var11 = 0; var11 < var10; ++var11) {
-            ArmorItem.Type type = var9[var11];
-            enumMap.put(type, (Integer)defense.get(type));
-        }
-
-        return Registry.registerReference(Registries.ARMOR_MATERIAL, Identifier.ofVanilla(id), new ArmorMaterial(enumMap, enchantability, equipSound, repairIngredient, layers, toughness, knockbackResistance));
+    @Override
+    public SoundEvent getEquipSound() {
+        return this.equipSound;
     }
 
-    static {
-        ICE_SKATES = register("ice_skates", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
-            map.put(Type.BOOTS, 3);
-            map.put(Type.LEGGINGS, 6);
-            map.put(Type.CHESTPLATE, 8);
-            map.put(Type.HELMET, 3);
-            map.put(Type.BODY, 11);
-        }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-            return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
-        });
-        CLIMBING_HOOK = register("climbing_hook", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
-            map.put(Type.BOOTS, 2);
-            map.put(Type.LEGGINGS, 6);
-            map.put(Type.CHESTPLATE, 8);
-            map.put(Type.HELMET, 3);
-            map.put(Type.BODY, 11);
-        }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-            return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
-        });
+    @Override
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredient.get();
+    }
+
+    @Override
+    public String getName() {
+        return ToffysHooks.MOD_ID + ":" + this.name;
+    }
+
+    @Override
+    public float getToughness() {
+        return this.toughness;
+    }
+
+    @Override
+    public float getKnockbackResistance() {
+        return this.knockbackResistance;
     }
 }

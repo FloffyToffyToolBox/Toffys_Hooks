@@ -17,8 +17,7 @@ public class ModEntities
         ToffysHooks.LOGGER.debug("Registering entities for " + ToffysHooks.MOD_ID);
     }
     static {
-        HOOK_ENTITY = (EntityType<HookEntity>) Registry.register(Registries.ENTITY_TYPE, Identifier.of
-                (ToffysHooks.MOD_ID, "hook_entity"),  EntityType.Builder.<HookEntity>create(HookEntity::new,SpawnGroup.MISC).dimensions(0.25F, 0.25F).disableSummon().disableSaving().maxTrackingRange(4).trackingTickInterval(5).build());
-
+        HOOK_ENTITY = Registry.register(Registries.ENTITY_TYPE, Identifier.of
+                (ToffysHooks.MOD_ID, "hook_entity"),  EntityType.Builder.<HookEntity>create(HookEntity::new,SpawnGroup.MISC).setDimensions(0.25F, 0.25F).disableSummon().disableSaving().maxTrackingRange(4).trackingTickInterval(5).build(ToffysHooks.MOD_ID+":hook_entity"));
     }
 }

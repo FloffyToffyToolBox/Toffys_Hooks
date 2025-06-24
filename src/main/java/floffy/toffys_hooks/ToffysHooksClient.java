@@ -24,7 +24,7 @@ public class ToffysHooksClient implements ClientModInitializer {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
             content.addAfter(Items.NETHERITE_HOE, ModItems.GRAPPLE_HOOK);
-            content.addAfter(Items.NETHERITE_HOE, ModItems.HOOK_AXE);
+            //content.addAfter(Items.NETHERITE_HOE, ModItems.HOOK_AXE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
             content.addAfter(Items.NETHERITE_BOOTS, ModItems.ICE_SKATES);
@@ -33,11 +33,11 @@ public class ToffysHooksClient implements ClientModInitializer {
             content.addAfter(Items.NETHERITE_BOOTS, ModItems.CLIMBING_HOOK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((content) -> {
-                content.addAfter(Items.HEAVY_CORE ,ModItems.HOOK);
+                content.addAfter(Items.NETHERITE_INGOT ,ModItems.HOOK);
         });
     }
     public void makeHooksItem() {
-    ModelPredicateProviderRegistry.register(ModItems.GRAPPLE_HOOK, Identifier.of("grappling_hook_extended"), (stack, clientLevel, livingEntity, i) -> {
+    ModelPredicateProviderRegistry.register(ModItems.GRAPPLE_HOOK, new Identifier("grappling_hook_extended"), (stack, clientLevel, livingEntity, i) -> {
         if (livingEntity == null) {
             return 0.0F;
         } else {

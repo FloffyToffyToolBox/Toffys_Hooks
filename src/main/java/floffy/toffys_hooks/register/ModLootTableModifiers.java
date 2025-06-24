@@ -1,7 +1,6 @@
 package floffy.toffys_hooks.register;
 
-import floffy.toffys_hooks.register.ModItems;
-import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.item.Item;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
@@ -31,8 +30,8 @@ private static final Identifier OMEN = Identifier.of("minecraft", "chests/trial_
     }
 
     public static void register(Identifier identifier, Item item, float chance, int rolls, float minCount, float maxCount){
-        LootTableEvents.MODIFY.register(((key, tableBuilder, source, registries) -> {
-            if (identifier.equals(key.getValue())){
+        LootTableEvents.MODIFY.register((resourceManager, registries, key, tableBuilder, source) -> {
+            if (identifier.equals(key)){
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(rolls))
                         .conditionally(RandomChanceLootCondition.builder(chance)) //1=100%
@@ -41,6 +40,6 @@ private static final Identifier OMEN = Identifier.of("minecraft", "chests/trial_
                                 .build());
                 tableBuilder.pool(poolBuilder.build());
             }
-        }));
+        });
     }
 }
