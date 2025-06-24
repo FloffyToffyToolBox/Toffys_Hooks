@@ -157,13 +157,6 @@ public class HookEntity extends ProjectileEntity {
             ((PlayerWithHookData)playerEntity).setHook(hookEntity);
         }
     }
-    //private void updateOwnerInfo(@Nullable LashingPotatoHookEntity lashingPotatoHook) {
-        //class_1657 player = this.getPlayerOwner();
-        //if (player != null) {
-        //    ((PlayerWithPotatoData)player).setPotatoHook(lashingPotatoHook);
-        //}
-
-    //}
     @Nullable
     public  PlayerEntity getPlayer() {
         Entity entity = this.getOwner();

@@ -23,6 +23,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.lwjgl.system.Platform;
 
+import java.util.Objects;
+
 public class HookClawItem extends ArmorItem {
     public HookClawItem(RegistryEntry<ArmorMaterial> material, Type type, Settings settings) {
         super(material, type, settings);
@@ -32,17 +34,7 @@ public class HookClawItem extends ArmorItem {
         super.inventoryTick(stack, world, entity, slot, selected);
             if (slot == EquipmentSlot.FEET.getEntitySlotId() && !(((PlayerEntity)entity).getMainHandStack().getItem() instanceof HookClawItem) && !(((PlayerEntity)entity).getInventory().main.getFirst().getItem() instanceof HookClawItem)) {
                 if (entity.horizontalCollision && (entity.horizontalSpeed!=0)&&!entity.isOnGround() && entity.getVelocity().y<=0){
-                    entity.setVelocity(entity.getVelocity().x,MinecraftClient.getInstance().options.sneakKey.isPressed()?-0.1f:0f,entity.getVelocity().z);
-                    if (((PlayerEntity)entity).shouldIgnoreFallDamageFromCurrentExplosion() && ((PlayerEntity)entity).currentExplosionImpactPos != null) {
-                        if (((PlayerEntity)entity).currentExplosionImpactPos.y > ((PlayerEntity)entity).getPos().y) {
-                            ((PlayerEntity)entity).currentExplosionImpactPos = ((PlayerEntity)entity).getPos();
-                        }
-                    }   else {
-                        entity.setVelocity(entity.getVelocity().x,0.01f,entity.getVelocity().z);
-                        ((PlayerEntity)entity).setIgnoreFallDamageFromCurrentExplosion(true);
-                        ((PlayerEntity)entity).currentExplosionImpactPos = ((PlayerEntity)entity).getPos();
-                    }
-                    entity.onLanding();
+                    entity.setVelocity(entity.getVelocity().x,MinecraftClient.getInstance().options.sneakKey.isPressed()?-0.25f:0.001f,entity.getVelocity().z);
                 if (MinecraftClient.getInstance().options.jumpKey.isPressed()) entity.setVelocity(entity.getVelocity().x,getEntityJumpStrength((PlayerEntity)entity),entity.getVelocity().z);
             }else
             {

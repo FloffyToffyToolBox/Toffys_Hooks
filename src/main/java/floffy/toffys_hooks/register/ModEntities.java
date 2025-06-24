@@ -13,10 +13,6 @@ import java.util.function.Supplier;
 public class ModEntities
 {
     public static final EntityType<HookEntity> HOOK_ENTITY;
-    //public static final EntityType<HookEntity> HOOK_ENTITY = register("lashing_potato_hook",
-            //EntityType.Builder.create(HookEntity::new, SpawnGroup.MISC).disableSaving().dimensions(
-                    //0.25f, 0.25f).maxTrackingRange(4).trackingTickInterval(5));
-
     public static void register() {
         ToffysHooks.LOGGER.debug("Registering entities for " + ToffysHooks.MOD_ID);
     }
