@@ -76,7 +76,7 @@ public class HookEntity extends ProjectileEntity {
     }
 
     private boolean discardIfInvalid(PlayerEntity player) {
-        if (player.isRemoved() || !player.isAlive() || !player.isHolding(ModItems.GRAPPLE_HOOK) || this.squaredDistanceTo(player) > 10000.0) {
+        if (player.isRemoved() || !player.isAlive() || !player.isHolding(ModItems.GRAPPLE_HOOK) || this.squaredDistanceTo(player) > 7000.0) {
             this.discard();
             return true;
         }
