@@ -41,7 +41,7 @@ public class HookEntity extends ProjectileEntity {
         this(ModEntities.HOOK_ENTITY, level);
         this.setOwner(player);
         this.setPosition(player.getX(), player.getEyeY(), player.getZ());
-        this.setVelocity(player.getRotationVec(1.0F).multiply(5.0));
+        this.setVelocity(player.getRotationVec(1.0F).multiply(2.0));
     }
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
