@@ -31,6 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
+import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
 @Environment(value=EnvType.CLIENT)
@@ -78,21 +79,22 @@ public class HookRenderer
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderLayer.getEntityCutoutNoCull(Identifier.of(ToffysHooks.MOD_ID,"textures/entity/hook_rope.png")));
         MatrixStack.Entry entry = matrixStack.peek();
         Matrix4f matrix4f = entry.getPositionMatrix();
-        HookRenderer.vertex(vertexConsumer, matrix4f, p, x, q, 0.4999f, ab, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, p, 0.0f, q, 0.4999f, aa, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, r, 0.0f, s, 0.0f, aa, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, r, x, s, 0.0f, ab, i );
+        Matrix3f matrix3f = entry.getNormalMatrix();
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, p, x, q, 0.4999f, ab, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, p, 0.0f, q, 0.4999f, aa, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, r, 0.0f, s, 0.0f, aa, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, r, x, s, 0.0f, ab, i );
 
-        HookRenderer.vertex(vertexConsumer, matrix4f, t, x, u, 1, ab, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, t, 0.0f, u, 1, aa, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, v, 0.0f, w, 0.4999f, aa, i );
-        HookRenderer.vertex(vertexConsumer, matrix4f, v, x, w, 0.4999f, ab, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, t, x, u, 1, ab, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, t, 0.0f, u, 1, aa, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, v, 0.0f, w, 0.4999f, aa, i );
+        HookRenderer.vertex(matrix4f,matrix3f, vertexConsumer, v, x, w, 0.4999f, ab, i );
         matrixStack.pop();
         super.render(lashingPotatoHookEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
-    private static void vertex(VertexConsumer vertexConsumer, Matrix4f matrix, float x, float y, float z, float u, float v, int i) {
-        vertexConsumer.vertex(matrix, x, y, z).color(255, 255, 255, 255).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(i).normal(0.0f, 1.0f, 0.0f);
+    private static void vertex(Matrix4f positionMatrix, Matrix3f normalMatrix, VertexConsumer vertexConsumer, float x, float y, float z, float u, float v, int i) {
+        vertexConsumer.vertex(positionMatrix, x, y, z).color(255, 255, 255, 255).texture(u, v).overlay(OverlayTexture.DEFAULT_UV).light(i).normal(normalMatrix,0.0f, 1.0f, 0.0f).next();
     }
 
     public static Vec3d getHandPos(PlayerEntity player, float tickDelta, Item item, EntityRenderDispatcher dispatcher) {
