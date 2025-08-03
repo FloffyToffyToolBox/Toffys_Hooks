@@ -21,7 +21,7 @@ private static final Identifier OMEN = Identifier.of("minecraft", "chests/trial_
     public static void modifyLootTables() {
         register(OMEN, ModItems.HOOK,.1f,1,1,2);
         register(OMEN, ModItems.GRAPPLE_HOOK,.1f,1,1,1);
-        register(POST, ModItems.CLIMBING_HOOK,0.25f,1,1,1);
+        register(POST, ModItems.CLIMBING_HOOK,.25f,1,1,1);
         register(ARMS, ModItems.CLIMBING_HOOK,.1f,1,1,1);
         register(ARNS2, ModItems.CLIMBING_HOOK,.1f,1,1,1);
         register(ARNS3, ModItems.CLIMBING_HOOK,.1f,1,1,1);

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "toffys_hooks:ice_skates",
+    "toffys_hooks:climbing_hook",
+    "minecraft:leather_boots",
+    "minecraft:chainmail_boots",
+    "minecraft:iron_boots"
+  ]
+}
