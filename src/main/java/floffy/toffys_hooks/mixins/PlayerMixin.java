@@ -14,15 +14,14 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin({PlayerEntity.class})
 public class PlayerMixin implements PlayerWithHookData {
@@ -85,6 +84,17 @@ public class PlayerMixin implements PlayerWithHookData {
                     }
                 }
             }
+        }
+    }
+    @Inject(
+            method = {"checkFallFlying"},
+            at = {@At("HEAD")},
+            cancellable = true)
+    public void checkFallFlying(CallbackInfoReturnable<Boolean> cir){
+        PlayerEntity player = (PlayerEntity)(Object)this;
+        ItemStack feetSlot = player.getEquippedStack(EquipmentSlot.FEET);
+        if (feetSlot.isOf(ModItems.CLIMBING_HOOK) && HookClawItem.isUsable(feetSlot)) {
+            if (player.horizontalCollision && (player.horizontalSpeed!=0)&&!player.isOnGround() && player.getVelocity().y<=0 ) cir.setReturnValue(false);
         }
     }
 }
