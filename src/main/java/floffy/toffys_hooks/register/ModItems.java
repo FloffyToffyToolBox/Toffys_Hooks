@@ -21,10 +21,10 @@ public class ModItems {
 
         ToffysHooks.LOGGER.debug("Registering items for " + ToffysHooks.MOD_ID);
     }
-    public static final Item GRAPPLE_HOOK = registerItem("grappling_hook", new HookItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).maxDamage(256)));
+    public static final Item GRAPPLE_HOOK = registerItem("grappling_hook", new HookItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).maxDamage(768)));
     public static final Item HOOK = registerItem("hook", new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
     public static final Item HOOK_AXE= registerItem("hook_axe", new MultiToolItem(ToolMaterials.DIAMOND, new Item.Settings().
-            attributeModifiers(MultiToolItem.createAttributeModifiers(ToolMaterials.DIAMOND, 4, -2.4F)).rarity(Rarity.RARE)));
+            attributeModifiers(MultiToolItem.createAttributeModifiers(ToolMaterials.DIAMOND, 4, -2.4F)).rarity(Rarity.RARE).maxDamage(768)));
     public static final Item CLIMBING_HOOK = registerItem("climbing_hook", new HookClawItem(
             ModArmourMaterials.CLIMBING_HOOK, net.minecraft.item.ArmorItem.Type.BOOTS, (new Item.Settings()).rarity(Rarity.UNCOMMON)
             .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(33))));

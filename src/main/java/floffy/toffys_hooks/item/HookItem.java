@@ -39,6 +39,7 @@ public class HookItem extends Item {
             }
             this.fire(world, player);
         }
+        player.getItemCooldownManager().set(this, 3);
         return TypedActionResult.success(itemStack, world.isClient);
     }
 

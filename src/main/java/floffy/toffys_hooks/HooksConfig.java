@@ -24,8 +24,6 @@ public class HooksConfig implements ConfigData {
     public static class GrapplingHookSettings {
         public boolean enabled = true;
         public boolean noDurability = true;
-        public int MaxDistance = 100;
-        public float Speed = 5;
     }
     @ConfigEntry.Gui.CollapsibleObject
     public  MultiToolSettings MultiToolOpen = new MultiToolSettings();
@@ -37,13 +35,24 @@ public class HooksConfig implements ConfigData {
     public ClimbingClawsSettings ClimbingClawsOpen = new ClimbingClawsSettings();
     public static class ClimbingClawsSettings {
         public boolean enabled = true;
-        public int jumpStrengthMultiplier = 1;
     }
     @ConfigEntry.Gui.CollapsibleObject
     public skatesSettings skatesOpen = new skatesSettings();
     public static class skatesSettings {
         public  boolean enabled = true;
-        public float accumulationRate = 0.005f;
-        public float maxSpeed = 2;
+    }
+    @ConfigEntry.Gui.CollapsibleObject
+    public EnabledFeatures enabledFeatures = new EnabledFeatures();
+    public static class EnabledFeatures {
+        public boolean grapplingHookEnabled = true;
+        public boolean multiToolEnabled = true;
+        public boolean climbingClawEnabled = true;
+        public boolean iceSkatesEnabled = true;
+    }
+    @ConfigEntry.Gui.CollapsibleObject
+    public DurabilityToggles durabilityToggles = new DurabilityToggles();
+    public static class DurabilityToggles {
+        public boolean grapplingHookInfDurability = false;
+        public boolean multiToolInfDurability = false;
     }
 }

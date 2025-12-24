@@ -31,8 +31,8 @@ import org.jetbrains.annotations.Nullable;
 public class HookEntity extends ProjectileEntity {
     public static final TrackedData<Boolean> IN_BLOCK = DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Float> LENGTH= DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.FLOAT);
-    private static final float MAX_RANGE = ModConfig.CONFIG.GrapplingHookOpen.MaxDistance;
-    private static final double SPEED = ModConfig.CONFIG.GrapplingHookOpen.Speed;
+    private static final float MAX_RANGE = 100.0F;
+    private static final double SPEED = 5.0;
 
     public HookEntity(EntityType<? extends ProjectileEntity> entityType, World level) {
         super(entityType, level);

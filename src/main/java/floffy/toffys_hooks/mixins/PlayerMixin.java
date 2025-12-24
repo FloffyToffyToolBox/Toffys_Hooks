@@ -71,7 +71,7 @@ public class PlayerMixin implements PlayerWithHookData {
             if (condition){
                 if (player.isLogicalSideForUpdatingMovement()) {
                     player.setVelocity(player.getVelocity().x, player.isSneaking()?-0.25f:0.0f,player.getVelocity().z);
-                    if (MinecraftClient.getInstance().player.input.jumping) player.setVelocity(player.getVelocity().x,getEntityJumpStrength((PlayerEntity)player)*ModConfig.CONFIG.ClimbingClawsOpen.jumpStrengthMultiplier,player.getVelocity().z);
+                    if (MinecraftClient.getInstance().player.input.jumping) player.setVelocity(player.getVelocity().x,getEntityJumpStrength((PlayerEntity)player),player.getVelocity().z);
                 }
             }
         }
@@ -81,8 +81,8 @@ public class PlayerMixin implements PlayerWithHookData {
     }
     @Inject(method ="getMovementSpeed",at= {@At("TAIL")},cancellable = true)
     public void getMovementSpeed(CallbackInfoReturnable<Float> cir){
-        float MaxSpeed = ModConfig.CONFIG.skatesOpen.maxSpeed;
-        float Accumulation = ModConfig.CONFIG.skatesOpen.accumulationRate;
+        float MaxSpeed = 2;
+        float Accumulation = 0.005f;
         PlayerEntity player = (PlayerEntity)(Object)this;
         ItemStack feetSlot = player.getEquippedStack(EquipmentSlot.FEET);
         if(player.isSprinting())timeRunning+=Accumulation;
