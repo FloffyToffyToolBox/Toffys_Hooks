@@ -6,6 +6,7 @@
 package floffy.toffys_hooks.item;
 
 import floffy.toffys_hooks.entity.HookEntity;
+import floffy.toffys_hooks.register.ModConfig;
 import floffy.toffys_hooks.util.PlayerWithHookData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,7 +34,8 @@ public class HookItem extends Item {
             HookItem.discard(world, player, hookEntity);
         } else {
             if (!world.isClient) {
-                itemStack.damage(1, player, LivingEntity.getSlotForHand(hand));
+                if (!ModConfig.CONFIG.GrapplingHookOpen.noDurability)itemStack.damage(1, player, LivingEntity.getSlotForHand(hand));
+                updateConfigDurability(itemStack);
             }
             this.fire(world, player);
         }
@@ -57,5 +59,8 @@ public class HookItem extends Item {
         }
         world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
         player.emitGameEvent(GameEvent.ITEM_INTERACT_FINISH);
+    }
+    private void updateConfigDurability(ItemStack stack){
+        if (ModConfig.CONFIG.GrapplingHookOpen.noDurability) stack.setDamage(0);
     }
 }

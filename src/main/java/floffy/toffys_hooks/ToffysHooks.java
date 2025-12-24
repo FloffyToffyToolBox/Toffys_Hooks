@@ -16,5 +16,6 @@ public class ToffysHooks implements ModInitializer {
 		ModItems.register();
 		ModBlockTags.register();
 		ModLootTableModifiers.modifyLootTables();
+		ModConfig.register();
 	}
 }

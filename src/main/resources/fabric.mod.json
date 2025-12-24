@@ -20,6 +20,9 @@
 		],
 		"client": [
 			"floffy.toffys_hooks.ToffysHooksClient"
+		],
+		"modmenu": [
+			"floffy.toffys_hooks.ModMenuIntegrate"
 		]
 	},
 	"mixins": [

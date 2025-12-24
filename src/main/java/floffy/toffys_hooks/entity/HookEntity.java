@@ -5,6 +5,7 @@
 
 package floffy.toffys_hooks.entity;
 
+import floffy.toffys_hooks.register.ModConfig;
 import floffy.toffys_hooks.register.ModEntities;
 import floffy.toffys_hooks.register.ModItems;
 import floffy.toffys_hooks.util.PlayerWithHookData;
@@ -30,8 +31,8 @@ import org.jetbrains.annotations.Nullable;
 public class HookEntity extends ProjectileEntity {
     public static final TrackedData<Boolean> IN_BLOCK = DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Float> LENGTH= DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.FLOAT);
-    private static final float MAX_RANGE = 100.0F;
-    private static final double SPEED = 5.0;
+    private static final float MAX_RANGE = ModConfig.CONFIG.GrapplingHookOpen.MaxDistance;
+    private static final double SPEED = ModConfig.CONFIG.GrapplingHookOpen.Speed;
 
     public HookEntity(EntityType<? extends ProjectileEntity> entityType, World level) {
         super(entityType, level);

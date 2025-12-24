@@ -1,9 +1,11 @@
 package floffy.toffys_hooks.item;
 
 import floffy.toffys_hooks.register.ModBlockTags;
+import floffy.toffys_hooks.register.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.ToolComponent;
@@ -40,11 +42,30 @@ public class MultiToolItem extends MiningToolItem {
         return true;
     }
 
+    @Override
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        ToolComponent toolComponent = (ToolComponent)stack.get(DataComponentTypes.TOOL);
+        if (toolComponent == null) {
+            return false;
+        } else {
+            if (!world.isClient && state.getHardness(world, pos) != 0.0F && toolComponent.damagePerBlock() > 0) {
+                stack.damage(toolComponent.damagePerBlock(), miner, EquipmentSlot.MAINHAND);
+            }
+
+            updateConfigDurability(stack);
+            return true;
+        }
+    }
+
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         return true;
     }
 
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
+        if (!ModConfig.CONFIG.MultiToolOpen.noDurability)stack.damage(1, attacker, EquipmentSlot.MAINHAND);
+        updateConfigDurability(stack);
+
+    }    private void updateConfigDurability(ItemStack stack){
+        if (ModConfig.CONFIG.GrapplingHookOpen.noDurability) stack.setDamage(0);
     }
 }

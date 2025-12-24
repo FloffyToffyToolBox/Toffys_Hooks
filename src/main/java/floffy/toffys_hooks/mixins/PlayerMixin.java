@@ -5,11 +5,14 @@
 
 package floffy.toffys_hooks.mixins;
 
+import floffy.toffys_hooks.HooksConfig;
 import floffy.toffys_hooks.entity.HookEntity;
 import floffy.toffys_hooks.item.HookClawItem;
 import floffy.toffys_hooks.item.IceSkateItem;
+import floffy.toffys_hooks.register.ModConfig;
 import floffy.toffys_hooks.register.ModItems;
 import floffy.toffys_hooks.util.PlayerWithHookData;
+import me.shedaniel.autoconfig.ConfigData;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
@@ -68,7 +71,7 @@ public class PlayerMixin implements PlayerWithHookData {
             if (condition){
                 if (player.isLogicalSideForUpdatingMovement()) {
                     player.setVelocity(player.getVelocity().x, player.isSneaking()?-0.25f:0.0f,player.getVelocity().z);
-                    if (MinecraftClient.getInstance().player.input.jumping) player.setVelocity(player.getVelocity().x,getEntityJumpStrength((PlayerEntity)player),player.getVelocity().z);
+                    if (MinecraftClient.getInstance().player.input.jumping) player.setVelocity(player.getVelocity().x,getEntityJumpStrength((PlayerEntity)player)*ModConfig.CONFIG.ClimbingClawsOpen.jumpStrengthMultiplier,player.getVelocity().z);
                 }
             }
         }
@@ -78,11 +81,13 @@ public class PlayerMixin implements PlayerWithHookData {
     }
     @Inject(method ="getMovementSpeed",at= {@At("TAIL")},cancellable = true)
     public void getMovementSpeed(CallbackInfoReturnable<Float> cir){
+        float MaxSpeed = ModConfig.CONFIG.skatesOpen.maxSpeed;
+        float Accumulation = ModConfig.CONFIG.skatesOpen.accumulationRate;
         PlayerEntity player = (PlayerEntity)(Object)this;
         ItemStack feetSlot = player.getEquippedStack(EquipmentSlot.FEET);
-        if(player.isSprinting())timeRunning+=.005f;
+        if(player.isSprinting())timeRunning+=Accumulation;
         else timeRunning=0f;
-        if (timeRunning>2) timeRunning=2;
+        if (timeRunning>MaxSpeed) timeRunning=MaxSpeed;
         if (timeRunning<0) timeRunning=0;
         if(feetSlot.isOf(ModItems.ICE_SKATES)) cir.setReturnValue((float) (player.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED)*(timeRunning+0.75f)));
     }

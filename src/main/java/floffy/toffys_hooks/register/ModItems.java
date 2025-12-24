@@ -11,6 +11,8 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
+import java.util.Objects;
+
 public class ModItems {
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ToffysHooks.MOD_ID, name), item);
@@ -19,7 +21,7 @@ public class ModItems {
 
         ToffysHooks.LOGGER.debug("Registering items for " + ToffysHooks.MOD_ID);
     }
-    public static final Item GRAPPLE_HOOK = registerItem("grappling_hook", new HookItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
+    public static final Item GRAPPLE_HOOK = registerItem("grappling_hook", new HookItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).maxDamage(256)));
     public static final Item HOOK = registerItem("hook", new Item(new Item.Settings().rarity(Rarity.UNCOMMON)));
     public static final Item HOOK_AXE= registerItem("hook_axe", new MultiToolItem(ToolMaterials.DIAMOND, new Item.Settings().
             attributeModifiers(MultiToolItem.createAttributeModifiers(ToolMaterials.DIAMOND, 4, -2.4F)).rarity(Rarity.RARE)));

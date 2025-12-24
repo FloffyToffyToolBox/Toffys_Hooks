@@ -1,6 +1,7 @@
 package floffy.toffys_hooks;
 
 import floffy.toffys_hooks.item.HookItem;
+import floffy.toffys_hooks.register.ModConfig;
 import floffy.toffys_hooks.register.ModEntities;
 import floffy.toffys_hooks.register.ModItems;
 import floffy.toffys_hooks.render.entity.HookRenderer;
@@ -22,14 +23,16 @@ public class ToffysHooksClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.HOOK_ENTITY, HookRenderer::new);
         makeHooksItem();
 
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
+        if(ModConfig.CONFIG.GrapplingHookOpen.enabled) ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
             content.addAfter(Items.NETHERITE_HOE, ModItems.GRAPPLE_HOOK);
+        });
+        if(ModConfig.CONFIG.MultiToolOpen.enabled) ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
             content.addAfter(Items.NETHERITE_HOE, ModItems.HOOK_AXE);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
+        if(ModConfig.CONFIG.skatesOpen.enabled) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
             content.addAfter(Items.NETHERITE_BOOTS, ModItems.ICE_SKATES);
         });
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
+        if(ModConfig.CONFIG.ClimbingClawsOpen.enabled) ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
             content.addAfter(Items.NETHERITE_BOOTS, ModItems.CLIMBING_HOOK);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register((content) -> {
