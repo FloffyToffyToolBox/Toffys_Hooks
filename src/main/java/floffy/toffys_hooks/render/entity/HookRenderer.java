@@ -111,7 +111,7 @@ public class HookRenderer
             return new Vec3d(MathHelper.lerp((double)tickDelta, (double)player.prevX, (double)player.getX()) - e * j - d * 0.4, player.prevY + (double)player.getStandingEyeHeight() + (player.getY() - player.prevY) * (double)tickDelta - 0.55 + (double)l, MathHelper.lerp((double)tickDelta, (double)player.prevZ, (double)player.getZ()) - d * j + e * 0.4);
         }
         double m = 960.0 / (double)dispatcher.gameOptions.getFov().getValue().intValue();
-        Vec3d vec3d = dispatcher.camera.getProjection().getPosition((float)i * 0.525f, -0.1f);
+        Vec3d vec3d = dispatcher.camera.getProjection().getPosition((float)i * 0.575f, -0.1f);
         vec3d = vec3d.multiply(m);
         vec3d = vec3d.rotateY(g * 0.5f);
         vec3d = vec3d.rotateX(-g * 0.7f);

@@ -1,0 +1,32 @@
+{
+  "mushroom_shelf_jump": {
+    "subtitle": "sounds.fallfest.mushroom_shelf_jump",
+    "sounds": [
+      "toffys_hooks:mushroom_shelf_jump"
+    ]
+  },
+  "mushroom_shelf_land": {
+    "subtitle": "sounds.fallfest.mushroom_shelf_land",
+    "sounds": [
+      "toffys_hooks:mushroom_shelf_land"
+    ]
+  },
+  "grappling_hook_fire": {
+    "subtitle": "sounds.toffys_hooks.grappling_hook_fire",
+    "sounds": [
+      "toffys_hooks:grappling_hook_fire"
+    ]
+  },
+  "retrieve_hook": {
+    "subtitle": "sounds.toffys_hooks.retrieve_hook",
+    "sounds": [
+      "toffys_hooks:retrieve_hook"
+    ]
+  },
+  "hook_claw_climb": {
+    "subtitle": "sounds.toffys_hooks.hook_claw_climb",
+    "sounds": [
+      "toffys_hooks:hook_claw_climb"
+    ]
+  }
+}

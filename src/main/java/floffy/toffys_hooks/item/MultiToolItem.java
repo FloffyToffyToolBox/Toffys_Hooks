@@ -1,8 +1,6 @@
 package floffy.toffys_hooks.item;
 
 import floffy.toffys_hooks.register.ModBlockTags;
-import floffy.toffys_hooks.register.ModConfig;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.DataComponentTypes;
@@ -52,7 +50,6 @@ public class MultiToolItem extends MiningToolItem {
                 stack.damage(toolComponent.damagePerBlock(), miner, EquipmentSlot.MAINHAND);
             }
 
-            updateConfigDurability(stack);
             return true;
         }
     }
@@ -62,10 +59,6 @@ public class MultiToolItem extends MiningToolItem {
     }
 
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (!ModConfig.CONFIG.MultiToolOpen.noDurability)stack.damage(1, attacker, EquipmentSlot.MAINHAND);
-        updateConfigDurability(stack);
-
-    }    private void updateConfigDurability(ItemStack stack){
-        if (ModConfig.CONFIG.GrapplingHookOpen.noDurability) stack.setDamage(0);
+        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
     }
 }
