@@ -1,20 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
+  "type": "minecraft:crafting_shapeless",
   "category": "equipment",
-  "key": {
-    "A": {
+  "ingredients": [
+    {
       "item": "toffys_hooks:hook"
     },
-    "B": {
+    {
       "item": "minecraft:chain"
     },
-    "C": {
+    {
       "item": "minecraft:stick"
     }
-  },
-  "pattern": [
-    " A",
-    "CB"
   ],
   "result": {
     "count": 1,
