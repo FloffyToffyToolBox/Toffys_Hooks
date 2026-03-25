@@ -1,20 +1,16 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "equipment",
-  "key": {
-    "A": {
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
       "item": "toffys_hooks:hook"
     },
-    "B": {
+    {
       "item": "minecraft:chain"
     },
-    "C": {
+    {
       "item": "minecraft:stick"
     }
-  },
-  "pattern": [
-    " A",
-    "CB"
   ],
   "result": {
     "item": "toffys_hooks:grappling_hook"

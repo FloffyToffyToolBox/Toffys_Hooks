@@ -6,6 +6,7 @@
 package floffy.toffys_hooks.item;
 
 import floffy.toffys_hooks.entity.HookEntity;
+import floffy.toffys_hooks.register.ModSoundEvents;
 import floffy.toffys_hooks.util.PlayerWithHookData;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,6 +40,7 @@ public class HookItem extends Item {
             }
             this.fire(world, player);
         }
+        player.getItemCooldownManager().set(this, 3);
         return TypedActionResult.success(itemStack, world.isClient);
     }
 
@@ -48,7 +50,7 @@ public class HookItem extends Item {
         }
 
         player.incrementStat(Stats.USED.getOrCreateStat(this));
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), ModSoundEvents.GRAPPLING_HOOK_FIRE, SoundCategory.NEUTRAL, .25f, 1F / (world.getRandom().nextFloat() * 0.4F + 0.8F));
         player.emitGameEvent(GameEvent.ITEM_INTERACT_START);
     }
 
@@ -57,7 +59,7 @@ public class HookItem extends Item {
             hookEntity.discard();
             ((PlayerWithHookData)player).setHook(null);
         }
-        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_FISHING_BOBBER_RETRIEVE, SoundCategory.NEUTRAL, 1.0f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), ModSoundEvents.RETRIEVE_HOOK, SoundCategory.NEUTRAL, .25f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
         player.emitGameEvent(GameEvent.ITEM_INTERACT_FINISH);
     }
 }

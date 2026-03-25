@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "parent": "minecraft:nether/obtain_ancient_debris",
   "criteria": {
-    "you_will_be_hooked": {
+    "spider_man": {
       "conditions": {
         "items": [
           {
-            "items": "toffys_hooks:hook"
+            "items": "toffys_hooks:climbing_hook"
           }
         ]
       },
@@ -14,19 +14,19 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.story.you_will_be_hooked.description"
+      "translate": "advancements.story.spider_man.description"
     },
     "icon": {
       "count": 1,
-      "id": "toffys_hooks:hook"
+      "id": "toffys_hooks:climbing_hook"
     },
     "title": {
-      "translate": "advancements.story.you_will_be_hooked.title"
+      "translate": "advancements.story.spider_man.title"
     }
   },
   "requirements": [
     [
-      "you_will_be_hooked"
+      "spider_man"
     ]
   ],
   "sends_telemetry_event": true

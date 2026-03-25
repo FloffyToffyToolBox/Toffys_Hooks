@@ -1,11 +1,11 @@
 {
-  "parent": "minecraft:adventure/minecraft_trials_edition",
+  "parent": "minecraft:nether/obtain_ancient_debris",
   "criteria": {
-    "spider_man": {
+    "quite_the_hooker": {
       "conditions": {
         "items": [
           {
-            "items": "toffys_hooks:climbing_hook"
+            "items": "toffys_hooks:grappling_hook"
           }
         ]
       },
@@ -14,19 +14,19 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.story.spider_man.description"
+      "translate": "advancements.story.quite_the_hooker.description"
     },
     "icon": {
       "count": 1,
-      "id": "toffys_hooks:climbing_hook"
+      "id": "toffys_hooks:grappling_hook"
     },
     "title": {
-      "translate": "advancements.story.spider_man.title"
+      "translate": "advancements.story.quite_the_hooker.title"
     }
   },
   "requirements": [
     [
-      "spider_man"
+      "quite_the_hooker"
     ]
   ],
   "sends_telemetry_event": true

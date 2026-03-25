@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hook": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "toffys_hooks:hook"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "toffys_hooks:hook_axe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_hook"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "toffys_hooks:hook_axe"
+    ]
+  },
+  "sends_telemetry_event": false
+}

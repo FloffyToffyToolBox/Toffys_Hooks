@@ -7,6 +7,7 @@ package floffy.toffys_hooks.entity;
 
 import floffy.toffys_hooks.register.ModEntities;
 import floffy.toffys_hooks.register.ModItems;
+import floffy.toffys_hooks.register.ModSoundEvents;
 import floffy.toffys_hooks.util.PlayerWithHookData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -21,8 +22,10 @@ import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.EntityTrackerEntry;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -30,8 +33,9 @@ import org.jetbrains.annotations.Nullable;
 public class HookEntity extends ProjectileEntity {
     public static final TrackedData<Boolean> IN_BLOCK = DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Float> LENGTH= DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.FLOAT);
-    private static final float MAX_RANGE = 100.0F;
-    private static final double SPEED = 5.0;
+    public static final TrackedData<BlockPos> ATTATCHED_BLOCK_POS = DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.BLOCK_POS);
+    private static final float MAX_RANGE = 2048;
+    private static final double SPEED = 1.25f;
 
     public HookEntity(EntityType<? extends ProjectileEntity> entityType, World level) {
         super(entityType, level);
@@ -41,7 +45,7 @@ public class HookEntity extends ProjectileEntity {
         this(ModEntities.HOOK_ENTITY, level);
         this.setOwner(player);
         this.setPosition(player.getX(), player.getEyeY(), player.getZ());
-        this.setVelocity(player.getRotationVec(1.0F).multiply(2.5));
+        this.setVelocity(player.getRotationVec(1.0F).multiply(SPEED));
     }
 
     @Override
@@ -52,6 +56,7 @@ public class HookEntity extends ProjectileEntity {
     protected void initDataTracker() {
         this.getDataTracker().startTracking(IN_BLOCK, false);
         this.getDataTracker().startTracking(LENGTH, 0.0F);
+        this.getDataTracker().startTracking(ATTATCHED_BLOCK_POS, new BlockPos(0,-5318008,0));
     }
     @Override
     public void tick() {
@@ -65,13 +70,13 @@ public class HookEntity extends ProjectileEntity {
         if (hitResult.getType() != HitResult.Type.MISS) {
             this.onCollision(hitResult);
         }
+        this.isInBlock();
         this.setPosition(hitResult.getPos());
         this.checkBlockCollision();
-        this.isInBlock();
     }
 
     private boolean discardIfInvalid(PlayerEntity player) {
-        if (player.isRemoved() || !player.isAlive() || !player.isHolding(ModItems.GRAPPLE_HOOK) || this.squaredDistanceTo(player) > 10000.0) {
+        if (player.isRemoved() || !player.isAlive() || !player.isHolding(ModItems.GRAPPLE_HOOK) || this.squaredDistanceTo(player) > MAX_RANGE || (this.getWorld().getBlockState(this.getAttatchedBlockPos()).isAir() && this.isInBlock() && this.getAttatchedBlockPos().getY()!=-5318008)) {
             this.discard();
             return true;
         }
@@ -86,7 +91,9 @@ public class HookEntity extends ProjectileEntity {
 
     @Override
     protected void onBlockHit(BlockHitResult blockHitResult) {
+        getWorld().playSound(null, blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ(), ModSoundEvents.RETRIEVE_HOOK, SoundCategory.NEUTRAL, .25f, 1f / (getWorld().getRandom().nextFloat() * 0.4f + 0.8f));
         super.onBlockHit(blockHitResult);
+        this.setAttatchedBlockPos(blockHitResult.getBlockPos());
         this.setVelocity(Vec3d.ZERO);
         this.setInBlock(true);
         PlayerEntity playerEntity = this.getPlayer();
@@ -123,6 +130,12 @@ public class HookEntity extends ProjectileEntity {
         return this.getDataTracker().get(LENGTH).floatValue();
     }
 
+    private void setAttatchedBlockPos(BlockPos blockPos) {
+        this.getDataTracker().set(ATTATCHED_BLOCK_POS, blockPos);
+    }
+    public BlockPos getAttatchedBlockPos() {
+        return this.getDataTracker().get(ATTATCHED_BLOCK_POS);
+    }
     @Override
     protected Entity.MoveEffect getMoveEffect() {
         return Entity.MoveEffect.NONE;
