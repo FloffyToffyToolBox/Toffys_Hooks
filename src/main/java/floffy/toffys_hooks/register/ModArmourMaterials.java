@@ -27,6 +27,7 @@ import net.minecraft.util.Util;
 public class ModArmourMaterials {
     public static final RegistryEntry<ArmorMaterial> ICE_SKATES;
     public static final RegistryEntry<ArmorMaterial> CLIMBING_HOOK;
+    public static final RegistryEntry<ArmorMaterial> ICARUS_BOOTS;
     public ModArmourMaterials() {
     }
 
@@ -63,7 +64,7 @@ public class ModArmourMaterials {
             map.put(Type.HELMET, 3);
             map.put(Type.BODY, 11);
         }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-            return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
+            return Ingredient.ofItems(new ItemConvertible[]{Items.ANCIENT_DEBRIS});
         });
         CLIMBING_HOOK = register("climbing_hook", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
             map.put(Type.BOOTS, 2);
@@ -72,7 +73,16 @@ public class ModArmourMaterials {
             map.put(Type.HELMET, 3);
             map.put(Type.BODY, 11);
         }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
-            return Ingredient.ofItems(new ItemConvertible[]{Items.HEAVY_CORE});
+            return Ingredient.ofItems(new ItemConvertible[]{Items.ANCIENT_DEBRIS});
+        });
+        ICARUS_BOOTS = register("icarus_boots", (EnumMap)Util.make(new EnumMap(ArmorItem.Type.class), (map) -> {
+            map.put(Type.BOOTS, 2);
+            map.put(Type.LEGGINGS, 6);
+            map.put(Type.CHESTPLATE, 8);
+            map.put(Type.HELMET, 3);
+            map.put(Type.BODY, 11);
+        }), 10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 0.0F, 0.0F, () -> {
+            return Ingredient.ofItems(new ItemConvertible[]{Items.ANCIENT_DEBRIS});
         });
     }
 }

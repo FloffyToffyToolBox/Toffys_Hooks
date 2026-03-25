@@ -27,8 +27,11 @@ public class ModItems {
             attributeModifiers(MultiToolItem.createAttributeModifiers(ToolMaterials.DIAMOND, 4, -2.4F)).rarity(Rarity.RARE).maxDamage(768)));
     public static final Item CLIMBING_HOOK = registerItem("climbing_hook", new HookClawItem(
             ModArmourMaterials.CLIMBING_HOOK, net.minecraft.item.ArmorItem.Type.BOOTS, (new Item.Settings()).rarity(Rarity.UNCOMMON)
-            .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(33))));
+            .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(42))));
     public static final Item ICE_SKATES =  registerItem("ice_skates", new IceSkateItem(
             ModArmourMaterials.ICE_SKATES, net.minecraft.item.ArmorItem.Type.BOOTS, (new Item.Settings()).rarity(Rarity.RARE)
-            .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(33))));
+            .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(42))));
+    public static final Item ICARUS_BOOTS =  registerItem("icarus_boots", new IceSkateItem(
+            ModArmourMaterials.ICARUS_BOOTS, net.minecraft.item.ArmorItem.Type.BOOTS, (new Item.Settings()).rarity(Rarity.RARE)
+            .maxDamage(net.minecraft.item.ArmorItem.Type.BOOTS.getMaxDamage(42))));
 }

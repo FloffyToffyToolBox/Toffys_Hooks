@@ -7,6 +7,7 @@ package floffy.toffys_hooks.mixins;
 
 import floffy.toffys_hooks.entity.HookEntity;
 import floffy.toffys_hooks.item.HookClawItem;
+import floffy.toffys_hooks.item.IcarusBootsItem;
 import floffy.toffys_hooks.item.IceSkateItem;
 import floffy.toffys_hooks.register.ModItems;
 import floffy.toffys_hooks.register.ModSoundEvents;
@@ -46,7 +47,10 @@ public abstract class PlayerMixin implements PlayerWithHookData {
     @Shadow public abstract void tick();
 
     private HookEntity hookEntity;
+    @Unique
     private boolean onWall;
+    @Unique
+    private boolean airJump;
 
     public boolean isOnWall() {
         return this.onWall;
@@ -107,6 +111,16 @@ public abstract class PlayerMixin implements PlayerWithHookData {
         if (feetSlot.isOf(ModItems.ICE_SKATES) && IceSkateItem.isUsable(feetSlot)) {
             player.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED);
         }
+        if (feetSlot.isOf(ModItems.ICARUS_BOOTS) && IcarusBootsItem.isUsable(feetSlot)) {
+            if (player.isOnGround()) airJump=true;
+            if (player.isLogicalSideForUpdatingMovement()&&player.fallDistance>0f){
+                if (MinecraftClient.getInstance().player.input.jumping && airJump) {
+                    player.setVelocity(player.getVelocity().x*1.1,getEntityJumpStrength((PlayerEntity)player),player.getVelocity().z*1.1);
+                    airJump=false;
+                }
+            }
+        }
+        else {airJump=false;}
     }
     @Inject(method ="getMovementSpeed",at= {@At("TAIL")},cancellable = true)
     public void getMovementSpeed(CallbackInfoReturnable<Float> cir){
