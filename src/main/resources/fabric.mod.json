@@ -5,11 +5,11 @@
 	"name": "[Toffy's] HOOKS",
 	"description": "Adds Grappling Hooks and Ice Skates",
 	"authors": [
-		"FloffyToffy https://www.youtube.com/@totallytoffy"
+		"FloffyToffy"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/toffys-hooks",
+		"sources": "https://github.com/FloffyToffyToolBox/Toffys_Hooks"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/toffys_hooks/icon.png",

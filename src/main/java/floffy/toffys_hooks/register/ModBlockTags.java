@@ -3,8 +3,6 @@ package floffy.toffys_hooks.register;
 import floffy.toffys_hooks.ToffysHooks;
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 

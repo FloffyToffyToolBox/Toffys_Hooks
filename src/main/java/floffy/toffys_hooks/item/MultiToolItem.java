@@ -1,9 +1,9 @@
 package floffy.toffys_hooks.item;
 
 import floffy.toffys_hooks.register.ModBlockTags;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.ToolComponent;
@@ -38,6 +38,20 @@ public class MultiToolItem extends MiningToolItem {
     }
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return true;
+    }
+
+    @Override
+    public boolean postMine(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner) {
+        ToolComponent toolComponent = (ToolComponent)stack.get(DataComponentTypes.TOOL);
+        if (toolComponent == null) {
+            return false;
+        } else {
+            if (!world.isClient && state.getHardness(world, pos) != 0.0F && toolComponent.damagePerBlock() > 0) {
+                stack.damage(toolComponent.damagePerBlock(), miner, EquipmentSlot.MAINHAND);
+            }
+
+            return true;
+        }
     }
 
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {

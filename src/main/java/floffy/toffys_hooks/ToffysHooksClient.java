@@ -24,6 +24,8 @@ public class ToffysHooksClient implements ClientModInitializer {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
             content.addAfter(Items.NETHERITE_HOE, ModItems.GRAPPLE_HOOK);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register((content) -> {
             content.addAfter(Items.NETHERITE_HOE, ModItems.HOOK_AXE);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register((content) -> {
