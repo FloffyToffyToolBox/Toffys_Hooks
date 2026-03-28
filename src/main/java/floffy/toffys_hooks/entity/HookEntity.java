@@ -35,7 +35,7 @@ public class HookEntity extends ProjectileEntity {
     public static final TrackedData<Float> LENGTH= DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.FLOAT);
     public static final TrackedData<BlockPos> ATTATCHED_BLOCK_POS = DataTracker.registerData(HookEntity.class, TrackedDataHandlerRegistry.BLOCK_POS);
     private static final float MAX_RANGE = 2048;
-    private static final double SPEED = 1.25f;
+    private static final double SPEED = 1.5f;
 
     public HookEntity(EntityType<? extends ProjectileEntity> entityType, World level) {
         super(entityType, level);
